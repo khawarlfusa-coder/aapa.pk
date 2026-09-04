@@ -2,7 +2,7 @@
   {
     "id": "AAPA-304456",
     "createdAt": "2026-09-03T20:58:47.391Z",
-    "status": "Pending Verification",
+    "status": "Confirmed",
     "paymentMethod": "Cash on Delivery (COD)",
     "customerName": "khawar khan",
     "customerPhone": "03219252888",
@@ -19,7 +19,8 @@
     ],
     "subtotal": "24.99",
     "shipping": 0,
-    "total": "24.99"
+    "total": "24.99",
+    "updatedAt": "2026-09-04T14:14:05.430Z"
   },
   {
     "id": "HL-920883",

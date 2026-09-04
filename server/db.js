@@ -1,34 +1,81 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
+const TMP_DIR = path.join(os.tmpdir(), 'aapa_db');
 
-// Ensure data directory exists
+// Ensure data and tmp directories exist
 if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+  try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch (e) {}
 }
+if (!fs.existsSync(TMP_DIR)) {
+  try { fs.mkdirSync(TMP_DIR, { recursive: true }); } catch (e) {}
+}
+
+const memoryCache = {};
 
 function getFilePath(collection) {
   return path.join(DATA_DIR, `${collection}.json`);
 }
 
+function getTmpFilePath(collection) {
+  return path.join(TMP_DIR, `${collection}.json`);
+}
+
 function readData(collection) {
+  if (memoryCache[collection]) {
+    return memoryCache[collection];
+  }
+
+  // 1. Try reading from /tmp first (contains latest updates in serverless instances)
+  const tmpFile = getTmpFilePath(collection);
+  if (fs.existsSync(tmpFile)) {
+    try {
+      const raw = fs.readFileSync(tmpFile, 'utf-8');
+      const parsed = JSON.parse(raw);
+      memoryCache[collection] = parsed;
+      return parsed;
+    } catch (err) {
+      console.warn(`Error reading tmp ${collection}:`, err.message);
+    }
+  }
+
+  // 2. Fallback to bundled repository data file
   const file = getFilePath(collection);
-  if (!fs.existsSync(file)) {
-    return [];
+  if (fs.existsSync(file)) {
+    try {
+      const raw = fs.readFileSync(file, 'utf-8');
+      const parsed = JSON.parse(raw);
+      memoryCache[collection] = parsed;
+      return parsed;
+    } catch (err) {
+      console.error(`Error reading bundled ${collection}:`, err.message);
+    }
   }
-  try {
-    const raw = fs.readFileSync(file, 'utf-8');
-    return JSON.parse(raw);
-  } catch (err) {
-    console.error(`Error reading ${collection}:`, err);
-    return [];
-  }
+
+  return collection === 'settings' ? {} : [];
 }
 
 function writeData(collection, data) {
-  const file = getFilePath(collection);
-  fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
+  memoryCache[collection] = data;
+
+  // 1. Write to /tmp (always writable in serverless environments like Vercel / AWS Lambda)
+  try {
+    const tmpFile = getTmpFilePath(collection);
+    fs.writeFileSync(tmpFile, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (err) {
+    console.warn(`Warning: Could not write to tmp for ${collection}:`, err.message);
+  }
+
+  // 2. Try writing to bundled repository directory (works in local / VPS, safe catch on Vercel EROFS)
+  try {
+    const file = getFilePath(collection);
+    fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (err) {
+    // Gracefully handle read-only file systems (EROFS) without throwing error
+    console.log(`[Storage Notice] Running in read-only environment. ${collection} successfully stored in memory & /tmp.`);
+  }
 }
 
 // Posts
@@ -135,7 +182,8 @@ function createOrder(orderData) {
 
 function updateOrderStatus(id, status) {
   const orders = getOrders();
-  const index = orders.findIndex(o => o.id === id);
+  const cleanTargetId = String(id).trim().toLowerCase();
+  const index = orders.findIndex(o => String(o.id).trim().toLowerCase() === cleanTargetId);
   if (index === -1) return null;
   orders[index].status = status;
   orders[index].updatedAt = new Date().toISOString();
@@ -145,21 +193,23 @@ function updateOrderStatus(id, status) {
 
 // Settings
 function getSettings() {
-  const file = getFilePath('settings');
-  if (!fs.existsSync(file)) {
+  const settings = readData('settings');
+  if (!settings || (Array.isArray(settings) && settings.length === 0) || Object.keys(settings).length === 0) {
     const defaultSettings = {
       siteName: 'Aapa.PK & Wellness',
       tagline: 'Evidence-based health insights & curated natural remedies',
       adsenseClientId: 'ca-pub-xxxxxxxxxxxxxxxx', // User can change this in admin panel
       adsenseEnabled: true,
       contactEmail: 'contact@aapa.pk',
-      contactPhone: '+1 (800) 555-0199',
+      contactPhone: '0336-8323063',
+      facebook: 'https://facebook.com/lfpk.pk',
+      instagram: 'https://instagram.com/aapa.pk',
       freeShippingThreshold: 0 // Always free delivery for COD
     };
     writeData('settings', defaultSettings);
     return defaultSettings;
   }
-  return JSON.parse(fs.readFileSync(file, 'utf-8'));
+  return settings;
 }
 
 function updateSettings(newSettings) {

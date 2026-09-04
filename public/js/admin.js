@@ -147,18 +147,22 @@ const AdminApp = {
 
   async updateOrderStatus(orderId, newStatus) {
     try {
-      const res = await fetch(`/api/orders/${orderId}/status`, {
+      const res = await fetch(`/api/orders/${encodeURIComponent(orderId)}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
       });
+      const data = await res.json().catch(() => ({}));
       if (res.ok) {
         this.showNotice(`Order ${orderId} updated to "${newStatus}"!`);
+        await this.loadDashboardData();
       } else {
-        alert('Failed to update status.');
+        alert(data.error || 'Failed to update status.');
+        await this.loadOrders();
       }
     } catch (e) {
       console.error('Error updating order:', e);
+      alert('Network error while updating order status.');
     }
   },
 

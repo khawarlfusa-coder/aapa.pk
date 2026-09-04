@@ -183,15 +183,21 @@ router.get('/orders/:id', (req, res) => {
 });
 
 router.patch('/orders/:id/status', (req, res) => {
-  const { status } = req.body;
-  if (!status) {
-    return res.status(400).json({ error: 'Status is required' });
+  try {
+    const { status } = req.body;
+    if (!status) {
+      return res.status(400).json({ error: 'Status is required' });
+    }
+    const orderId = req.params.id;
+    const updated = db.updateOrderStatus(orderId, status);
+    if (!updated) {
+      return res.status(404).json({ error: `Order "${orderId}" not found in database.` });
+    }
+    res.json({ success: true, order: updated });
+  } catch (err) {
+    console.error('Error updating order status:', err);
+    res.status(500).json({ error: err.message || 'Internal server error while updating order.' });
   }
-  const updated = db.updateOrderStatus(req.params.id, status);
-  if (!updated) {
-    return res.status(404).json({ error: 'Order not found' });
-  }
-  res.json(updated);
 });
 
 // --- SETTINGS & STATS ---
