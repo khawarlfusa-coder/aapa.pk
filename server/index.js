@@ -67,6 +67,12 @@ app.get('/ads.txt', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'ads.txt'));
 });
 
+// Google Search Console Site Verification
+app.get('/google8a653a38d28088ef.html', (req, res) => {
+  res.type('text/html');
+  res.sendFile(path.join(__dirname, '..', 'public', 'google8a653a38d28088ef.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`=====================================================`);
   console.log(`🌿 Aapa.PK (Healthline-style Blog + COD Store) is running!`);
