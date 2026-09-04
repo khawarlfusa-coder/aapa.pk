@@ -394,7 +394,9 @@ const AdminApp = {
           adsenseClientId: document.getElementById('adsenseClientId').value.trim(),
           adsenseEnabled: document.getElementById('adsenseEnabled').checked,
           siteName: document.getElementById('siteName').value.trim(),
-          contactPhone: document.getElementById('contactPhone').value.trim()
+          contactPhone: document.getElementById('contactPhone').value.trim(),
+          facebook: document.getElementById('siteFacebook') ? document.getElementById('siteFacebook').value.trim() : '',
+          instagram: document.getElementById('siteInstagram') ? document.getElementById('siteInstagram').value.trim() : ''
         };
 
         try {
