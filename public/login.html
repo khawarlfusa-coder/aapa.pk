@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In &lsaquo; Aapa.PK Admin &mdash; WordPress</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f0f0f1;
+      color: #3c434a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .login-logo {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .login-logo a {
+      text-decoration: none;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #007a78;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .login-card {
+      background: #ffffff;
+      border: 1px solid #c3c4c7;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      width: 100%;
+      max-width: 360px;
+      padding: 26px 24px;
+      border-radius: 4px;
+    }
+
+    .login-notice {
+      background: #fff;
+      border-left: 4px solid #d63638;
+      box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #2c3338;
+      display: none;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #2c3338;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #8c8f94;
+      border-radius: 4px;
+      font-size: 16px;
+      line-height: 1.5;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: #2271b1;
+      box-shadow: 0 0 0 1px #2271b1;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 18px;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #50575e;
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      background: #2271b1;
+      border: 1px solid #2271b1;
+      color: #fff;
+      border-radius: 4px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #135e96;
+      border-color: #135e96;
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .login-footer-links {
+      width: 100%;
+      max-width: 360px;
+      margin-top: 24px;
+      font-size: 13px;
+      color: #50575e;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .login-footer-links a {
+      color: #50575e;
+      text-decoration: none;
+    }
+
+    .login-footer-links a:hover {
+      color: #2271b1;
+      text-decoration: underline;
+    }
+
+    .demo-credentials-box {
+      margin-top: 20px;
+      padding: 12px;
+      background: #e7f5ff;
+      border: 1px solid #a5d8ff;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #1971c2;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand Logo -->
+  <div class="login-logo">
+    <a href="/index.html">
+      <i class="fa-solid fa-heart-pulse"></i> Aapa.PK
+    </a>
+  </div>
+
+  <!-- Login Form Card -->
+  <div class="login-card">
+    <div class="login-notice" id="loginNotice"></div>
+
+    <form id="adminLoginForm">
+      <div class="form-group">
+        <label for="username" class="form-label">Username or Email Address</label>
+        <input type="text" id="username" class="form-input" required autocomplete="username" autofocus value="admin">
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-input" required autocomplete="current-password" value="admin123">
+      </div>
+
+      <div class="form-row">
+        <label class="remember-me">
+          <input type="checkbox" id="rememberMe" checked> Remember Me
+        </label>
+        <button type="submit" class="btn-submit" id="btnLogin">
+          <i class="fa-solid fa-lock"></i> Log In
+        </button>
+      </div>
+    </form>
+
+    <div class="demo-credentials-box">
+      <strong><i class="fa-solid fa-shield-halved"></i> Default Credentials:</strong><br>
+      Username: <code>admin</code><br>
+      Password: <code>admin123</code><br>
+      <em>(You can change this password inside the Admin Settings tab).</em>
+    </div>
+  </div>
+
+  <!-- Footer Links -->
+  <div class="login-footer-links">
+    <a href="/index.html">&larr; Go to Aapa.PK</a>
+    <a href="javascript:void(0);" onclick="alert('Default login credentials are: admin / admin123')">Lost your password?</a>
+  </div>
+
+  <script>
+    const form = document.getElementById('adminLoginForm');
+    const notice = document.getElementById('loginNotice');
+    const btn = document.getElementById('btnLogin');
+
+    // If already logged in, redirect directly to admin
+    const token = localStorage.getItem('aapa_admin_token') || sessionStorage.getItem('aapa_admin_token');
+    if (token) {
+      window.location.href = '/admin.html';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      notice.style.display = 'none';
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('rememberMe').checked;
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Logging In...';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          notice.textContent = data.error || 'ERROR: Invalid username or password.';
+          notice.style.display = 'block';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-lock"></i> Log In';
+          return;
+        }
+
+        // Save session token
+        if (remember) {
+          localStorage.setItem('aapa_admin_token', data.token);
+          localStorage.setItem('aapa_admin_user', JSON.stringify(data.user));
+        } else {
+          sessionStorage.setItem('aapa_admin_token', data.token);
+          sessionStorage.setItem('aapa_admin_user', JSON.stringify(data.user));
+        }
+
+        // Redirect to admin dashboard
+        window.location.href = '/admin.html';
+      } catch (err) {
+        notice.textContent = 'Server connection error. Please try again.';
+        notice.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-lock"></i> Log In';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+[
+  {
+    "id": "prod_1",
+    "name": "Pure KSM-66® Ashwagandha Root (600mg)",
+    "category": "Stress & Sleep",
+    "price": 24.99,
+    "originalPrice": 34.99,
+    "rating": 4.9,
+    "reviewsCount": 312,
+    "badge": "Best Seller",
+    "codAvailable": true,
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+    "description": "Standardized organic full-spectrum root extract with 5% withanolides. Clinically tested to reduce stress, elevate stamina, and enhance sleep quality.",
+    "benefits": [
+      "Reduces cortisol and chronic stress response",
+      "Enhances natural sleep depth and recovery",
+      "Certified 100% Organic & Non-GMO",
+      "Free from heavy metals & artificial fillers"
+    ],
+    "dosage": "Take 1 vegetarian capsule twice daily with meals.",
+    "stock": 48
+  },
+  {
+    "id": "prod_2",
+    "name": "Chelated Magnesium Glycinate Complex (400mg)",
+    "category": "Stress & Sleep",
+    "price": 21.5,
+    "originalPrice": 28,
+    "rating": 4.8,
+    "reviewsCount": 184,
+    "badge": "Doctor Recommended",
+    "codAvailable": true,
+    "image": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
+    "description": "Bioavailable, gentle-on-the-stomach chelated magnesium bound to amino acid glycine. Formulated for muscle recovery and restorative sleep.",
+    "benefits": [
+      "Eases muscle cramps, twitching, and tension",
+      "Promotes deep REM sleep cycles without grogginess",
+      "Non-laxative, high-absorption formula",
+      "Third-party lab tested for purity"
+    ],
+    "dosage": "Take 2 capsules 45 minutes before bedtime.",
+    "stock": 65
+  },
+  {
+    "id": "prod_3",
+    "name": "Triple Strength Ultra-Pure Omega-3 Wild Fish Oil",
+    "category": "Heart & Brain",
+    "price": 29.99,
+    "originalPrice": 39.99,
+    "rating": 4.9,
+    "reviewsCount": 420,
+    "badge": "Top Rated",
+    "codAvailable": true,
+    "image": "https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=600&q=80",
+    "description": "1,200mg Total Omega-3s with 800mg EPA and 400mg DHA per softgel. Molecularly distilled from wild-caught cold-water anchovies.",
+    "benefits": [
+      "Promotes cardiovascular arterial flexibility",
+      "Enhances cognitive acuity and memory retention",
+      "IFOS 5-Star Certified zero fishy aftertaste with natural lemon oil",
+      "Burp-free enteric coating"
+    ],
+    "dosage": "Take 1 softgel daily with your largest meal.",
+    "stock": 30
+  },
+  {
+    "id": "prod_4",
+    "name": "Organic Chamomile & Lavender Herbal Sleep Elixir Tea",
+    "category": "Daily Wellness",
+    "price": 16,
+    "originalPrice": 19.99,
+    "rating": 4.7,
+    "reviewsCount": 96,
+    "badge": "100% Organic",
+    "codAvailable": true,
+    "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80",
+    "description": "Whole Egyptian chamomile flowers hand-blended with French lavender buds and lemon balm for a serene evening ritual.",
+    "benefits": [
+      "Naturally caffeine-free calming herbal blend",
+      "Relaxes tight abdominal muscles and digestive tract",
+      "Biodegradable pyramid sachets",
+      "Direct-trade organic botanical sourcing"
+    ],
+    "dosage": "Steep 1 tea sachet in 200ml boiling water for 6-8 minutes.",
+    "stock": 90
+  },
+  {
+    "id": "prod_6",
+    "name": "Liposomal Vitamin C (1000mg) with Bioflavonoids",
+    "category": "Immunity",
+    "price": 22.9,
+    "originalPrice": 29.9,
+    "rating": 4.8,
+    "reviewsCount": 140,
+    "badge": "Fast Absorption",
+    "codAvailable": true,
+    "image": "https://images.unsplash.com/photo-1584362917165-526a968579e8?auto=format&fit=crop&w=600&q=80",
+    "description": "Phospholipid sunflower liposomes shield ascorbic acid from breakdown, achieving up to 3x higher intracellular delivery than standard vitamin C.",
+    "benefits": [
+      "High-potency cellular immune defense",
+      "Stimulates natural collagen synthesis for youthful skin",
+      "Gentle on acidic stomachs",
+      "Non-GMO and alcohol-free"
+    ],
+    "dosage": "Take 2 capsules daily with breakfast.",
+    "stock": 40
+  }
+]

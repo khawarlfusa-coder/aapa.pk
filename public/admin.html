@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WP-Admin Dashboard | Aapa.PK</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- WordPress-Style Dark Sidebar -->
+  <aside class="wp-sidebar">
+    <div class="wp-sidebar-brand">
+      <i class="fa-brands fa-wordpress"></i>
+      <span>Aapa.PK Admin</span>
+    </div>
+
+    <ul class="wp-nav-menu">
+      <li class="wp-nav-item active" data-tab="dashboard">
+        <a href="#dashboard">
+          <i class="fa-solid fa-gauge-high"></i> Dashboard
+        </a>
+      </li>
+      <li class="wp-nav-item" data-tab="orders">
+        <a href="#orders">
+          <i class="fa-solid fa-truck-ramp-box"></i> COD Orders
+        </a>
+      </li>
+      <li class="wp-nav-item" data-tab="articles">
+        <a href="#articles">
+          <i class="fa-solid fa-newspaper"></i> Health Articles
+        </a>
+      </li>
+      <li class="wp-nav-item" data-tab="products">
+        <a href="#products">
+          <i class="fa-solid fa-prescription-bottle-medical"></i> Store Products
+        </a>
+      </li>
+      <li class="wp-nav-item" data-tab="settings">
+        <a href="#settings">
+          <i class="fa-solid fa-rectangle-ad"></i> AdSense & Settings
+        </a>
+      </li>
+    </ul>
+
+    <div class="wp-sidebar-footer">
+      <a href="/index.html" target="_blank" style="margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Live Site
+      </a>
+      <a href="javascript:void(0)" onclick="AdminApp.logout()" style="color: #f87171; display: flex; align-items: center; gap: 6px; text-decoration: none;">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </a>
+    </div>
+  </aside>
+
+  <!-- WP Main Content -->
+  <div class="wp-main-content">
+    <!-- Top WordPress Toolbar -->
+    <header class="wp-topbar">
+      <div class="wp-topbar-left">
+        <a href="/index.html" target="_blank" title="View Frontend">
+          <i class="fa-solid fa-house"></i> Aapa.PK &bull; Healthline-Style Portal
+        </a>
+      </div>
+      <div class="wp-topbar-right">
+        <span>Howdy, <strong id="adminUserName">Administrator</strong></span>
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="Admin" class="wp-admin-avatar">
+        <button type="button" onclick="AdminApp.logout()" class="btn-wp-primary" style="background: #d63638; border-color: #b32d2e; padding: 4px 10px; font-size: 0.8rem; margin-left: 8px;">
+          <i class="fa-solid fa-right-from-bracket"></i> Log Out
+        </button>
+      </div>
+    </header>
+
+    <!-- WP Body -->
+    <main class="wp-body">
+      <!-- Admin Notice Banner (Appears dynamically) -->
+      <div class="wp-notice success" id="adminNotice" style="display: none;">
+        Action completed successfully.
+      </div>
+
+      <!-- ============================================================
+           TAB 1: DASHBOARD
+           ============================================================ -->
+      <section id="tab-dashboard" class="tab-section">
+        <div class="wp-page-header">
+          <h1 class="wp-page-title"><i class="fa-solid fa-gauge"></i> Overview & Metrics</h1>
+          <a href="/shop.html" target="_blank" class="btn-wp-primary">
+            <i class="fa-solid fa-store"></i> View Storefront
+          </a>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="wp-stats-grid">
+          <div class="wp-stat-card">
+            <div class="wp-stat-icon icon-green">
+              <i class="fa-solid fa-sack-dollar"></i>
+            </div>
+            <div class="wp-stat-info">
+              <h3 id="statRevenue">$0.00</h3>
+              <p>Total Revenue (COD)</p>
+            </div>
+          </div>
+
+          <div class="wp-stat-card">
+            <div class="wp-stat-icon icon-blue">
+              <i class="fa-solid fa-boxes-packing"></i>
+            </div>
+            <div class="wp-stat-info">
+              <h3 id="statTotalOrders">0</h3>
+              <p>Total Orders</p>
+            </div>
+          </div>
+
+          <div class="wp-stat-card">
+            <div class="wp-stat-icon icon-orange">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <div class="wp-stat-info">
+              <h3 id="statPendingOrders">0</h3>
+              <p>Pending Verification</p>
+            </div>
+          </div>
+
+          <div class="wp-stat-card">
+            <div class="wp-stat-icon icon-purple">
+              <i class="fa-solid fa-file-medical"></i>
+            </div>
+            <div class="wp-stat-info">
+              <h3 id="statArticles">0</h3>
+              <p>Published Articles</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Orders Preview Table -->
+        <div class="wp-card">
+          <div class="wp-card-header">
+            <h3 class="wp-card-title"><i class="fa-solid fa-receipt"></i> Recent Cash on Delivery Orders</h3>
+            <button type="button" class="btn-wp-primary" onclick="document.querySelector('[data-tab=\'orders\']').click()">
+              View All Orders
+            </button>
+          </div>
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer Name</th>
+                  <th>Phone Number</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="recentOrdersTbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           TAB 2: COD ORDERS MANAGER
+           ============================================================ -->
+      <section id="tab-orders" class="tab-section" style="display: none;">
+        <div class="wp-page-header">
+          <h1 class="wp-page-title"><i class="fa-solid fa-truck-ramp-box"></i> Cash on Delivery Orders</h1>
+          <button type="button" class="btn-wp-primary" onclick="AdminApp.loadOrders()">
+            <i class="fa-solid fa-rotate"></i> Refresh Orders
+          </button>
+        </div>
+
+        <div class="wp-card">
+          <div class="wp-card-header">
+            <h3 class="wp-card-title">All Customer COD Orders (Name, Number, Address Tracking)</h3>
+          </div>
+          <div class="wp-table-wrap">
+            <table class="wp-table">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Customer & Delivery Address</th>
+                  <th>Items Ordered</th>
+                  <th>Total (COD)</th>
+                  <th>Status Workflow</th>
+                  <th>Ordered On</th>
+                </tr>
+              </thead>
+              <tbody id="allOrdersTbody">
+                <!-- Populated via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           TAB 3: HEALTH ARTICLES (BLOG)
+           ============================================================ -->
+      <section id="tab-articles" class="tab-section" style="display: none;">
+        <div class="wp-page-header">
+          <h1 class="wp-page-title"><i class="fa-solid fa-newspaper"></i> Medical & Health Articles</h1>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
+          <!-- Create New Healthline-Style Article -->
+          <div class="wp-card">
+            <h3 class="wp-card-title" style="margin-bottom: 16px;">
+              <i class="fa-solid fa-pen-to-square"></i> Add New Medical-Reviewed Article
+            </h3>
+            <form id="newArticleForm">
+              <div class="wp-form-group">
+                <label class="wp-form-label">Article Headline *</label>
+                <input type="text" id="postTitle" class="wp-form-control" placeholder="e.g. 7 Proven Benefits of Rhodiola Rosea for Fatigue" required>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Category</label>
+                  <select id="postCategory" class="wp-form-control">
+                    <option value="Supplements">Supplements & Herbs</option>
+                    <option value="Nutrition">Nutrition</option>
+                    <option value="Mental Health">Mental Health</option>
+                    <option value="Fitness & Weight Loss">Fitness & Weight Loss</option>
+                    <option value="Wellness">Daily Wellness</option>
+                  </select>
+                </div>
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Cover Image URL</label>
+                  <input type="url" id="postCoverImage" class="wp-form-control" placeholder="https://images.unsplash.com/photo-...">
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Medical Reviewer Name</label>
+                  <input type="text" id="postReviewerName" class="wp-form-control" placeholder="Dr. Kelly Wood, MD">
+                </div>
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Reviewer Credentials</label>
+                  <input type="text" id="postReviewerCredentials" class="wp-form-control" placeholder="Board-Certified Endocrinologist">
+                </div>
+              </div>
+
+              <div class="wp-form-group">
+                <label class="wp-form-label">Summary / Excerpt</label>
+                <input type="text" id="postSummary" class="wp-form-control" placeholder="Brief 1-2 sentence evidence summary">
+              </div>
+
+              <div class="wp-form-group">
+                <label class="wp-form-label">Article Content (HTML allowed)</label>
+                <textarea id="postContent" class="wp-form-control" rows="8" placeholder="<h2>1. Overview</h2><p>Clinical studies indicate...</p>" required></textarea>
+              </div>
+
+              <button type="submit" class="btn-wp-primary">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Publish Health Article
+              </button>
+            </form>
+          </div>
+
+          <!-- Articles Table -->
+          <div class="wp-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+              <h3 class="wp-card-title" style="margin-bottom: 0;">
+                Published Articles <span id="adminArticleCountBadge" style="font-size: 0.85rem; color: #2271b1; font-weight: normal;">(Loading...)</span>
+              </h3>
+              <input type="text" id="adminArticleSearchInput" placeholder="🔍 Search among 350+ articles..." class="wp-form-control" style="max-width: 320px; padding: 6px 12px; font-size: 0.85rem;">
+            </div>
+            <div class="wp-table-wrap">
+              <table class="wp-table">
+                <thead>
+                  <tr>
+                    <th>Article Title</th>
+                    <th>Category</th>
+                    <th>Medical Reviewer</th>
+                    <th>Evidence Rating</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="allArticlesTbody">
+                  <!-- Populated via admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           TAB 4: PRODUCTS (WELLNESS STORE)
+           ============================================================ -->
+      <section id="tab-products" class="tab-section" style="display: none;">
+        <div class="wp-page-header">
+          <h1 class="wp-page-title"><i class="fa-solid fa-prescription-bottle-medical"></i> Wellness Store Products</h1>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
+          <!-- Add New Product Form -->
+          <div class="wp-card">
+            <h3 class="wp-card-title" style="margin-bottom: 16px;">
+              <i class="fa-solid fa-plus"></i> Add New Wellness Supplement
+            </h3>
+            <form id="newProductForm">
+              <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px;">
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Product Name *</label>
+                  <input type="text" id="prodName" class="wp-form-control" placeholder="e.g. Organic Lion's Mane Mushroom Extract" required>
+                </div>
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Category</label>
+                  <select id="prodCategory" class="wp-form-control">
+                    <option value="Stress & Sleep">Stress & Sleep</option>
+                    <option value="Heart & Brain">Heart & Brain</option>
+                    <option value="Daily Wellness">Daily Wellness</option>
+                    <option value="Gut & Digestion">Gut & Digestion</option>
+                    <option value="Immunity">Immunity</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Selling Price ($) *</label>
+                  <input type="number" step="0.01" id="prodPrice" class="wp-form-control" placeholder="24.99" required>
+                </div>
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Original Price ($)</label>
+                  <input type="number" step="0.01" id="prodOriginalPrice" class="wp-form-control" placeholder="32.00">
+                </div>
+                <div class="wp-form-group">
+                  <label class="wp-form-label">Highlight Badge</label>
+                  <input type="text" id="prodBadge" class="wp-form-control" placeholder="e.g. Best Seller, Pure Extract">
+                </div>
+              </div>
+
+              <div class="wp-form-group">
+                <label class="wp-form-label">Image URL</label>
+                <input type="url" id="prodImage" class="wp-form-control" placeholder="https://images.unsplash.com/photo-...">
+              </div>
+
+              <div class="wp-form-group">
+                <label class="wp-form-label">Description & Benefits</label>
+                <textarea id="prodDescription" class="wp-form-control" rows="3" placeholder="Formulated for cognitive focus and neuronal health. Free Cash on Delivery available."></textarea>
+              </div>
+
+              <button type="submit" class="btn-wp-primary">
+                <i class="fa-solid fa-plus"></i> Save Supplement to Store
+              </button>
+            </form>
+          </div>
+
+          <!-- Product Table -->
+          <div class="wp-card">
+            <h3 class="wp-card-title" style="margin-bottom: 16px;">Current Catalog Items</h3>
+            <div class="wp-table-wrap">
+              <table class="wp-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>COD Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="allProductsTbody">
+                  <!-- Populated via admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           TAB 5: ADSENSE & GENERAL SETTINGS
+           ============================================================ -->
+      <section id="tab-settings" class="tab-section" style="display: none;">
+        <div class="wp-page-header">
+          <h1 class="wp-page-title"><i class="fa-solid fa-rectangle-ad"></i> Google AdSense & Store Settings</h1>
+        </div>
+
+        <div class="wp-card" style="max-width: 700px;">
+          <form id="settingsForm">
+            <h3 style="font-size: 1.1rem; margin-bottom: 14px; border-bottom: 1px solid #f0f0f1; padding-bottom: 8px;">
+              Google AdSense Integration
+            </h3>
+
+            <div class="wp-form-group">
+              <label class="wp-form-label">Google AdSense Publisher Client ID</label>
+              <input type="text" id="adsenseClientId" class="wp-form-control" placeholder="ca-pub-xxxxxxxxxxxxxxxx">
+              <small style="color: #646970; font-size: 0.8rem; display: block; margin-top: 4px;">
+                Enter your approved Google AdSense publisher ID. If set to a real publisher ID, ads will automatically execute. In demo mode, high-res preview banners are shown.
+              </small>
+            </div>
+
+            <div class="wp-form-group" style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" id="adsenseEnabled" checked style="transform: scale(1.2);">
+              <label for="adsenseEnabled" style="font-weight: 600; font-size: 0.9rem;">
+                Enable Google AdSense slots across website (Leaderboard, Sidebar, In-Article, Billboard)
+              </label>
+            </div>
+
+            <h3 style="font-size: 1.1rem; margin: 24px 0 14px 0; border-bottom: 1px solid #f0f0f1; padding-bottom: 8px;">
+              Store & COD Contact Settings
+            </h3>
+
+            <div class="wp-form-group">
+              <label class="wp-form-label">Website Name</label>
+              <input type="text" id="siteName" class="wp-form-control" value="Aapa.PK">
+            </div>
+
+            <div class="wp-form-group">
+              <label class="wp-form-label">Customer Support Hotline (for COD verification)</label>
+              <input type="text" id="contactPhone" class="wp-form-control" value="+1 (800) 432-5844">
+            </div>
+
+            <button type="submit" class="btn-wp-primary" style="margin-top: 10px;">
+              <i class="fa-solid fa-check"></i> Save Settings
+            </button>
+          </form>
+        </div>
+
+        <!-- Change Password Card -->
+        <div class="wp-card" style="max-width: 700px; margin-top: 24px;">
+          <h3 style="font-size: 1.1rem; margin-bottom: 14px; border-bottom: 1px solid #f0f0f1; padding-bottom: 8px;">
+            <i class="fa-solid fa-key"></i> Administrator Security & Password
+          </h3>
+          <form id="changePasswordForm">
+            <div class="wp-form-group">
+              <label class="wp-form-label">Current Password *</label>
+              <input type="password" id="currentPassword" class="wp-form-control" required placeholder="Enter current password">
+            </div>
+            <div class="wp-form-group">
+              <label class="wp-form-label">New Password *</label>
+              <input type="password" id="newPassword" class="wp-form-control" required minlength="5" placeholder="Minimum 5 characters">
+            </div>
+            <div class="wp-form-group">
+              <label class="wp-form-label">Confirm New Password *</label>
+              <input type="password" id="confirmNewPassword" class="wp-form-control" required minlength="5" placeholder="Confirm new password">
+            </div>
+            <button type="submit" class="btn-wp-primary" style="background: #007a78; border-color: #005f5d;">
+              <i class="fa-solid fa-lock"></i> Update Password
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "user_1",
+    "username": "admin",
+    "password": "admin123",
+    "email": "admin@aapa.pk",
+    "name": "Aapa.PK Administrator",
+    "role": "administrator",
+    "createdAt": "2026-09-03T14:00:00.000Z"
+  }
+]

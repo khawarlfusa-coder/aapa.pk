@@ -1,0 +1,14 @@
+{
+  "name": "healthline-store",
+  "version": "1.0.0",
+  "description": "Healthline-style health blog with e-commerce shop, COD checkout, and WordPress-style admin panel",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "seed": "node server/seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

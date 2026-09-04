@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wellness Shop & Natural Remedies | Cash on Delivery Available | Aapa.PK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Charter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .filter-pills-bar {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 10px 0 20px 0;
+      scrollbar-width: none;
+    }
+    .filter-pills-bar::-webkit-scrollbar { display: none; }
+    .filter-pill {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <i class="fa-solid fa-truck-fast"></i> <span class="highlight">FREE EXPRESS CASH ON DELIVERY</span> on all supplements! Pay cash upon receipt.
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-main">
+        <div class="logo-area">
+          <a href="/index.html" class="brand-logo">
+            <i class="fa-solid fa-heart-pulse"></i> Aapa<span>.PK</span>
+          </a>
+          <span class="brand-tagline">Makes your life easy</span>
+        </div>
+
+        <form class="search-form" id="searchForm">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search supplements, adaptogens...">
+        </form>
+
+        <div class="header-actions">
+          <a href="/index.html" class="btn-nav-action">
+            <i class="fa-solid fa-newspaper"></i> Read Blog
+          </a>
+          <button type="button" class="btn-cart-nav" onclick="CartManager.openDrawer()">
+            <i class="fa-solid fa-bag-shopping"></i> Cart
+            <span class="cart-count-badge" style="display: none;">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Health Topic Categories Subnav -->
+      <nav class="topic-nav">
+        <ul class="topic-list">
+          <li><a href="/index.html">&larr; Health Blog Home</a></li>
+          <li><a href="/shop.html" class="active">All Wellness Products</a></li>
+          <li><a href="/checkout.html"><i class="fa-solid fa-wallet"></i> Cash on Delivery Checkout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Google AdSense Leaderboard Slot -->
+  <div class="container adsense-slot-container">
+    <div class="adsense-slot-leaderboard"></div>
+  </div>
+
+  <!-- Shop Hero / Header Section -->
+  <section class="container" style="padding: 30px 20px 10px 20px;">
+    <div style="max-width: 800px; margin-bottom: 24px;">
+      <h1 style="font-size: 2.2rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+        Curated Clinical <span style="color: var(--primary);">Wellness Formulations</span>
+      </h1>
+      <p style="color: #64748b; font-size: 1rem; line-height: 1.5;">
+        Every supplement in our store is formulated based on published randomized clinical trials, third-party assayed for purity, and backed by convenient <strong>Cash on Delivery (COD)</strong> payment.
+      </p>
+    </div>
+
+    <!-- COD Trust Alert Box -->
+    <div class="cod-banner-callout" style="background: #f0fdf4; border-color: #86efac;">
+      <div class="cod-icon-text">
+        <i class="fa-solid fa-money-bill-wave" style="color: #059669; font-size: 1.8rem;"></i>
+        <div>
+          <strong style="color: #065f46; font-size: 1.05rem;">Safe & Simple: Cash on Delivery (COD) Only</strong>
+          <div style="font-size: 0.85rem; color: #047857; margin-top: 2px;">
+            Order with confidence. No credit card required. Simply provide your name, phone, and address, and pay in cash when the courier hands you your package.
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span class="status-pill status-delivered"><i class="fa-solid fa-shield-check"></i> Free Shipping</span>
+        <span class="status-pill status-confirmed"><i class="fa-solid fa-clock"></i> 2-4 Days Delivery</span>
+      </div>
+    </div>
+
+    <!-- Filter Pills -->
+    <div class="filter-pills-bar">
+      <button type="button" class="filter-pill active" data-category="All">All Formulations</button>
+      <button type="button" class="filter-pill" data-category="Stress & Sleep">Stress & Sleep</button>
+      <button type="button" class="filter-pill" data-category="Heart & Brain">Heart & Brain</button>
+      <button type="button" class="filter-pill" data-category="Daily Wellness">Daily Wellness</button>
+      <button type="button" class="filter-pill" data-category="Gut & Digestion">Gut & Digestion</button>
+      <button type="button" class="filter-pill" data-category="Immunity">Immunity</button>
+    </div>
+
+    <!-- Products Count -->
+    <div style="margin-bottom: 20px; font-size: 0.88rem; color: #64748b; font-weight: 600;" id="productCountText">
+      Showing all wellness formulations
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="shopProductsGrid">
+      <!-- Populated via main.js -->
+    </div>
+  </section>
+
+  <!-- Google AdSense Billboard Slot -->
+  <div class="container adsense-slot-container" style="margin-top: 50px;">
+    <div class="adsense-slot-leaderboard"></div>
+  </div>
+
+  <!-- Medical Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="medical-disclaimer-box">
+        <strong><i class="fa-solid fa-triangle-exclamation"></i> Dietary Supplement Disclaimer:</strong> Statements regarding dietary supplements have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent any disease or health condition.
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Aapa.PK Media. All rights reserved. Makes your life easy.</div>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="/privacy-policy.html" style="color: #94a3b8;">Privacy Policy</a>
+          <a href="/terms.html" style="color: #94a3b8;">Terms of Use</a>
+          <a href="/index.html" style="color: #94a3b8;">Health Blog</a>
+          <a href="/checkout.html" style="color: #38bdf8;">COD Checkout</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-Out Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3 class="cart-drawer-title">
+        <i class="fa-solid fa-bag-shopping" style="color: var(--primary);"></i> Your Wellness Bag
+      </h3>
+      <button type="button" class="btn-close-drawer" onclick="CartManager.closeDrawer()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="cart-drawer-body" id="cartDrawerItems"></div>
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="cart-total-line">
+        <span>Subtotal</span>
+        <span id="drawerSubtotal">$0.00</span>
+      </div>
+      <div class="cart-total-line">
+        <span>Shipping (Cash on Delivery)</span>
+        <span style="color: #059669; font-weight: 700;">FREE</span>
+      </div>
+      <div class="cart-total-line final">
+        <span>Total Payable (COD)</span>
+        <span id="drawerTotal" style="color: var(--primary);">$0.00</span>
+      </div>
+      <div class="cod-guarantee-note">
+        <i class="fa-solid fa-shield-check"></i>
+        <span>Pay with Cash upon courier handover. Zero advance payment.</span>
+      </div>
+      <a href="/checkout.html" class="btn-checkout-proceed">Proceed to COD Checkout &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/adsense.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

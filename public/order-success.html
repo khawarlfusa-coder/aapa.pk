@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed | Aapa.PK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-main">
+        <div class="logo-area">
+          <a href="/index.html" class="brand-logo">
+            <i class="fa-solid fa-heart-pulse"></i> Aapa<span>.PK</span>
+          </a>
+          <span class="brand-tagline">Makes your life easy</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Success Container -->
+  <div class="container success-page-wrap">
+    <div class="success-card">
+      <div class="success-icon-circle">
+        <i class="fa-solid fa-check"></i>
+      </div>
+
+      <h1 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 6px;">
+        Order Placed Successfully!
+      </h1>
+      <p style="color: #64748b; font-size: 0.95rem;">
+        Thank you for choosing Aapa.PK. Your Cash on Delivery order is now registered.
+      </p>
+
+      <div class="order-badge-id">
+        Order ID: <span id="orderIdDisplay" style="color: #059669;">AAPA-LOADING</span>
+      </div>
+
+      <!-- COD Highlights Notice -->
+      <div class="cod-banner-callout" style="text-align: left; margin: 20px 0; background: #ecfdf5; border-color: #a7f3d0;">
+        <div class="cod-icon-text">
+          <i class="fa-solid fa-hand-holding-dollar" style="font-size: 1.8rem;"></i>
+          <div>
+            <strong>Amount Payable in Cash: <span id="orderTotalAmount" style="color: #047857; font-size: 1.15rem;">$0.00</span></strong>
+            <div style="font-size: 0.8rem; color: #065f46; margin-top: 2px;">
+              Please keep the exact cash ready. Our courier will call you before delivery.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Summary Table -->
+      <div style="text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin-bottom: 24px;">
+        <h4 style="font-size: 0.92rem; color: #0f172a; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px;">
+          Delivery & Contact Summary
+        </h4>
+        <div style="font-size: 0.88rem; color: #334155; line-height: 1.6;">
+          <div><strong>Recipient:</strong> <span id="orderCustomerName">--</span></div>
+          <div><strong>Phone Number:</strong> <span id="orderCustomerPhone">--</span></div>
+          <div><strong>Delivery Address:</strong> <span id="orderCustomerAddress">--</span></div>
+          <div><strong>Payment Terms:</strong> Cash on Delivery (COD)</div>
+          <div><strong>Estimated Dispatch:</strong> Within 24-48 hours via Priority Courier</div>
+        </div>
+
+        <h4 style="font-size: 0.92rem; color: #0f172a; margin: 16px 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px;">
+          Items Ordered
+        </h4>
+        <div id="orderItemsList">
+          <!-- Populated dynamically via main.js -->
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="/index.html" class="btn-checkout-proceed" style="background: var(--primary); text-decoration: none; width: auto; padding: 10px 22px;">
+          <i class="fa-solid fa-house"></i> Read Health Blog
+        </a>
+        <a href="/shop.html" class="btn-nav-action" style="padding: 10px 20px;">
+          <i class="fa-solid fa-store"></i> Continue Shopping
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="text-align: center; padding: 30px 20px; font-size: 0.8rem; color: #94a3b8;">
+    <p>&copy; 2026 Aapa.PK. Makes your life easy.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 8px;">
+      <a href="/privacy-policy.html" style="color: #64748b;">Privacy Policy</a>
+      <a href="/terms.html" style="color: #64748b;">Terms of Use</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+</body>
+</html>

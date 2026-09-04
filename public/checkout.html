@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cash on Delivery Checkout | Aapa.PK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <i class="fa-solid fa-lock"></i> 100% Secure Frictionless Checkout &bull; <span class="highlight">Pay Cash on Delivery Only</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-main">
+        <div class="logo-area">
+          <a href="/index.html" class="brand-logo">
+            <i class="fa-solid fa-heart-pulse"></i> Aapa<span>.PK</span>
+          </a>
+          <span class="brand-tagline">Makes your life easy</span>
+        </div>
+
+        <div class="header-actions">
+          <a href="/shop.html" class="btn-nav-action">
+            <i class="fa-solid fa-arrow-left"></i> Back to Shop
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Container -->
+  <div class="container checkout-page-wrap">
+    <h1 class="checkout-title"><i class="fa-solid fa-truck-ramp-box" style="color: #059669;"></i> Express Cash on Delivery (COD)</h1>
+    <p class="checkout-subtitle">Please enter your delivery details below. No card or online payment required. Pay cash directly to the courier when your order arrives.</p>
+
+    <div class="checkout-grid">
+      <!-- Checkout Form (Name, Number, Address ONLY) -->
+      <div class="checkout-card">
+        <form id="codCheckoutForm">
+          <div class="form-section-title">
+            <i class="fa-solid fa-user-check" style="color: var(--primary);"></i> 1. Contact & Delivery Information
+          </div>
+
+          <!-- Customer Name -->
+          <div class="form-group">
+            <label class="form-label" for="customerName">Full Name *</label>
+            <input type="text" id="customerName" class="form-control" placeholder="e.g. John Doe" required autocomplete="name">
+            <small style="color: #64748b; font-size: 0.78rem;">Recipient name for parcel delivery verification</small>
+          </div>
+
+          <!-- Mobile Phone Number -->
+          <div class="form-group">
+            <label class="form-label" for="customerPhone">Mobile Phone Number *</label>
+            <div style="position: relative;">
+              <input type="tel" id="customerPhone" class="form-control" placeholder="e.g. +1 (555) 019-2834" required autocomplete="tel">
+            </div>
+            <small style="color: #059669; font-size: 0.78rem; font-weight: 500;">
+              <i class="fa-solid fa-phone-volume"></i> Our courier will call/SMS this number right before delivering your parcel.
+            </small>
+          </div>
+
+          <!-- Delivery Address -->
+          <div class="form-group">
+            <label class="form-label" for="customerAddress">Complete Delivery Address *</label>
+            <textarea id="customerAddress" class="form-control" rows="3" placeholder="House/Apartment #, Street Address, City, State, ZIP / Postal Code" required autocomplete="street-address"></textarea>
+            <small style="color: #64748b; font-size: 0.78rem;">Include any apartment, suite, or flat number</small>
+          </div>
+
+          <!-- Optional Landmark / Notes -->
+          <div class="form-group">
+            <label class="form-label" for="customerNotes">Delivery Instructions or Landmark (Optional)</label>
+            <input type="text" id="customerNotes" class="form-control" placeholder="e.g. Near Central Park, leave with gate security if away">
+          </div>
+
+          <!-- Payment Method: Locked to Cash on Delivery (COD) -->
+          <div style="margin-top: 28px;">
+            <div class="form-section-title">
+              <i class="fa-solid fa-money-bill-1-wave" style="color: #059669;"></i> 2. Payment Method
+            </div>
+
+            <div class="payment-choice-box">
+              <input type="radio" checked id="codRadio" name="payment_method" style="margin-top: 4px; accent-color: #059669; transform: scale(1.2);">
+              <div>
+                <label for="codRadio" class="payment-choice-title">
+                  Cash on Delivery (COD) — Guaranteed Safe
+                </label>
+                <div class="payment-choice-desc">
+                  You do <strong>not</strong> need to pay anything right now. Hand the exact cash amount to the delivery courier once your parcel is placed in your hands.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-place-order" id="btnSubmitOrder">
+            <i class="fa-solid fa-shield-halved"></i> Confirm Cash on Delivery Order
+          </button>
+          <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: #64748b;">
+            <i class="fa-solid fa-circle-check" style="color: #059669;"></i> Free cancellation at any time before dispatch.
+          </div>
+        </form>
+      </div>
+
+      <!-- Order Summary Card -->
+      <div>
+        <div class="checkout-card">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px;">
+            Order Summary
+          </h3>
+
+          <div id="checkoutSummaryItems">
+            <!-- Dynamically populated from cart via main.js -->
+          </div>
+
+          <div style="border-top: 1px solid #e2e8f0; margin-top: 16px; padding-top: 14px;">
+            <div class="cart-total-line">
+              <span>Subtotal</span>
+              <span id="checkoutSubtotal">$0.00</span>
+            </div>
+            <div class="cart-total-line">
+              <span>Delivery Fee</span>
+              <span style="color: #059669; font-weight: 700;">FREE (Promo)</span>
+            </div>
+            <div class="cart-total-line final">
+              <span>Total to Pay upon Delivery</span>
+              <span id="checkoutTotal" style="color: #059669;">$0.00</span>
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px; margin-top: 20px; font-size: 0.82rem; color: #475569;">
+            <div style="font-weight: 700; color: #0f172a; margin-bottom: 4px;">
+              <i class="fa-solid fa-box-open" style="color: var(--primary);"></i> Discrete & Tamper-Proof Packaging
+            </div>
+            All wellness items are shipped in opaque, padded boxes with lab-verified batch certificates enclosed.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Medical Footer -->
+  <footer class="site-footer" style="margin-top: 40px; padding: 30px 0;">
+    <div class="container" style="text-align: center; font-size: 0.82rem; color: #94a3b8;">
+      <p>&copy; 2026 Aapa.PK. Safe Cash on Delivery Delivery Network. Makes your life easy.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; margin-top: 10px; flex-wrap: wrap;">
+        <a href="/privacy-policy.html" style="color: #38bdf8;">Privacy Policy</a>
+        <a href="/terms.html" style="color: #38bdf8;">Terms of Use</a>
+        <a href="/shop.html" style="color: #94a3b8;">Shop</a>
+        <a href="/index.html" style="color: #94a3b8;">Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
