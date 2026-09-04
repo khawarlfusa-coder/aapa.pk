@@ -77,7 +77,7 @@ const AdminApp = {
       const stats = await statsRes.json();
       const orders = await ordersRes.json();
 
-      document.getElementById('statRevenue').textContent = `$${stats.totalRevenue}`;
+      document.getElementById('statRevenue').textContent = `PKR ${parseFloat(stats.totalRevenue).toLocaleString()}`;
       document.getElementById('statTotalOrders').textContent = stats.totalOrders;
       document.getElementById('statPendingOrders').textContent = stats.pendingOrders;
       document.getElementById('statArticles').textContent = stats.totalPosts;
@@ -92,7 +92,7 @@ const AdminApp = {
               <td><strong>${o.id}</strong></td>
               <td>${o.customerName}</td>
               <td><span style="font-family: monospace;">${o.customerPhone}</span></td>
-              <td><strong>$${o.total}</strong></td>
+              <td><strong>PKR ${parseFloat(o.total).toLocaleString()}</strong></td>
               <td>${this.renderStatusBadge(o.status)}</td>
               <td>${new Date(o.createdAt).toLocaleDateString()}</td>
             </tr>
@@ -125,7 +125,7 @@ const AdminApp = {
               ${o.notes ? `<div style="font-size:0.75rem; color:#b45309; margin-top:4px;"><em>Note: ${o.notes}</em></div>` : ''}
             </td>
             <td style="font-size: 0.82rem;">${itemsList}</td>
-            <td><strong style="color: #059669;">$${o.total}</strong></td>
+            <td><strong style="color: #059669;">PKR ${parseFloat(o.total).toLocaleString()}</strong></td>
             <td>
               <select class="status-select" onchange="AdminApp.updateOrderStatus('${o.id}', this.value)">
                 <option value="Pending Verification" ${o.status === 'Pending Verification' ? 'selected' : ''}>Pending Verification</option>
@@ -278,7 +278,7 @@ const AdminApp = {
               </div>
             </td>
             <td>${p.category}</td>
-            <td><strong>$${parseFloat(p.price).toFixed(2)}</strong></td>
+            <td><strong>PKR ${parseFloat(p.price).toLocaleString()}</strong></td>
             <td><span class="status-pill status-delivered">COD Enabled</span></td>
             <td>
               <button class="btn-wp-primary" style="background:#d63638; border-color:#b32d2e; padding:4px 10px; font-size:0.8rem;" onclick="AdminApp.deleteProduct('${p.id}')">

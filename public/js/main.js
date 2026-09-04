@@ -93,10 +93,9 @@ const App = {
           <h2 class="story-title">${featured.title}</h2>
           <p class="story-excerpt">${featured.summary}</p>
           <div class="author-meta">
-            <img src="${featured.author.avatar}" alt="${featured.author.name}" class="author-avatar">
             <div class="author-text">
-              <h5>By ${featured.author.name}</h5>
-              <p>${featured.readTime} &bull; Updated ${featured.reviewer ? featured.reviewer.date : 'Recently'}</p>
+              <p style="color: #059669; font-weight: 600; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Fact Checked &bull; Evidence-Based</p>
+              <p style="font-size: 0.8rem; color: #64748b;"><i class="fa-regular fa-clock"></i> ${featured.readTime} &bull; Updated ${featured.reviewer ? featured.reviewer.date : 'Recently'}</p>
             </div>
           </div>
         </div>
@@ -165,12 +164,9 @@ const App = {
               <a href="/article.html?slug=${p.slug}">${p.title}</a>
             </h3>
             <p class="article-card-desc">${p.summary && p.summary.length > 110 ? p.summary.substring(0, 110) + '...' : (p.summary || '')}</p>
-            <div class="author-meta" style="margin-top: auto;">
-              <img src="${p.author && p.author.avatar ? p.author.avatar : 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80'}" alt="${p.author ? p.author.name : 'Author'}" class="author-avatar" style="width: 32px; height: 32px;">
-              <div class="author-text">
-                <h5 style="font-size: 0.8rem;">${p.author ? p.author.name : 'Aapa.PK Team'}</h5>
-                <p style="font-size: 0.7rem; color: #059669;"><i class="fa-solid fa-check-double"></i> Fact Checked</p>
-              </div>
+            <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid #f1f5f9;">
+              <span style="font-size: 0.75rem; color: #059669; font-weight: 600;"><i class="fa-solid fa-check-double"></i> Fact Checked</span>
+              <span style="font-size: 0.75rem; color: #0f766e; font-weight: 600;">Read Guide &rarr;</span>
             </div>
           </div>
         </article>
@@ -298,8 +294,8 @@ const App = {
           </div>
 
           <div class="product-pricing">
-            <span class="current-price">$${parseFloat(prod.price).toFixed(2)}</span>
-            ${prod.originalPrice ? `<span class="original-price">$${parseFloat(prod.originalPrice).toFixed(2)}</span>` : ''}
+            <span class="current-price">PKR ${parseInt(prod.price).toLocaleString()}</span>
+            ${prod.originalPrice ? `<span class="original-price">PKR ${parseInt(prod.originalPrice).toLocaleString()}</span>` : ''}
           </div>
 
           <button type="button" class="btn-add-cart" onclick='CartManager.addItem(${JSON.stringify(prod).replace(/'/g, "&apos;")})'>
@@ -399,8 +395,8 @@ const App = {
       document.getElementById('articleCategory').href = `/index.html?category=${encodeURIComponent(post.category)}`;
       document.getElementById('articleHeadline').textContent = post.title;
       document.getElementById('articleReviewerName').textContent = post.reviewer ? post.reviewer.name : 'Dr. Ayesha Siddiqa, MBBS';
-      document.getElementById('articleReviewerDate').textContent = post.reviewer ? post.reviewer.date : 'Recent';
-      document.getElementById('articleAuthorName').textContent = post.author ? post.author.name : 'Aapa.PK Team';
+      const authorEl = document.getElementById('articleAuthorName');
+      if (authorEl) authorEl.textContent = post.author ? post.author.name : 'Aapa.PK Team';
       document.getElementById('articleReadTime').textContent = post.readTime;
       document.getElementById('articleCoverImage').src = post.coverImage;
       document.getElementById('articleCoverImage').alt = post.title;
@@ -465,7 +461,7 @@ const App = {
               <img src="${relatedProd.image}" style="width: 70px; height: 70px; object-fit: cover; border-radius: 6px; border: 1px solid #ccfbf1;">
               <div>
                 <strong style="font-size: 0.95rem; color: #0f172a; display: block;">${relatedProd.name}</strong>
-                <span style="font-size: 1.1rem; font-weight: 800; color: #0f766e;">$${parseFloat(relatedProd.price).toFixed(2)}</span>
+                <span style="font-size: 1.1rem; font-weight: 800; color: #0f766e;">PKR ${parseInt(relatedProd.price).toLocaleString()}</span>
                 <span class="cod-pill" style="margin-left: 6px;">COD Available</span>
               </div>
             </div>
@@ -512,18 +508,18 @@ const App = {
             <img src="${item.image}" style="width: 44px; height: 44px; object-fit: cover; border-radius: 4px; border: 1px solid #e2e8f0;">
             <div>
               <div style="font-weight: 600; color: #1e293b;">${item.name}</div>
-              <div style="font-size: 0.78rem; color: #64748b;">Qty: ${item.quantity} &times; $${item.price.toFixed(2)}</div>
+              <div style="font-size: 0.78rem; color: #64748b;">Qty: ${item.quantity} &times; PKR ${parseInt(item.price).toLocaleString()}</div>
             </div>
           </div>
-          <div style="font-weight: 700; color: #0f172a;">$${(item.price * item.quantity).toFixed(2)}</div>
+          <div style="font-weight: 700; color: #0f172a;">PKR ${parseInt(item.price * item.quantity).toLocaleString()}</div>
         </div>
       `;
     });
     if (summaryItems) summaryItems.innerHTML = html;
 
-    const total = CartManager.getTotal().toFixed(2);
-    if (subtotalEl) subtotalEl.textContent = `$${total}`;
-    if (totalEl) totalEl.textContent = `$${total}`;
+    const total = CartManager.getTotal();
+    if (subtotalEl) subtotalEl.textContent = `PKR ${parseInt(total).toLocaleString()}`;
+    if (totalEl) totalEl.textContent = `PKR ${parseInt(total).toLocaleString()}`;
 
     // Handle Form Submission
     if (checkoutForm) {
@@ -605,14 +601,14 @@ const App = {
         document.getElementById('orderCustomerName').textContent = order.customerName;
         document.getElementById('orderCustomerPhone').textContent = order.customerPhone;
         document.getElementById('orderCustomerAddress').textContent = order.customerAddress;
-        document.getElementById('orderTotalAmount').textContent = `$${order.total}`;
+        document.getElementById('orderTotalAmount').textContent = `PKR ${parseInt(order.total).toLocaleString()}`;
 
         let itemsHtml = '';
         order.items.forEach(i => {
           itemsHtml += `
             <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.9rem;">
               <span>${i.name} &times; ${i.quantity}</span>
-              <strong>$${(i.price * i.quantity).toFixed(2)}</strong>
+              <strong>PKR ${parseInt(i.price * i.quantity).toLocaleString()}</strong>
             </div>
           `;
         });

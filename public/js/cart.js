@@ -136,7 +136,7 @@ const CartManager = {
           <img src="${item.image}" alt="${item.name}" class="cart-item-img">
           <div class="cart-item-details">
             <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+            <div class="cart-item-price">PKR ${parseInt(item.price).toLocaleString()}</div>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 6px;">
               <div class="cart-qty-controls">
                 <button type="button" class="btn-qty" onclick="CartManager.updateQuantity('${item.id}', -1)">-</button>
@@ -157,9 +157,9 @@ const CartManager = {
     // Update Drawer Totals
     const subtotalEl = document.getElementById('drawerSubtotal');
     const totalEl = document.getElementById('drawerTotal');
-    const total = this.getTotal().toFixed(2);
-    if (subtotalEl) subtotalEl.textContent = `$${total}`;
-    if (totalEl) totalEl.textContent = `$${total}`;
+    const total = this.getTotal();
+    if (subtotalEl) subtotalEl.textContent = `PKR ${parseInt(total).toLocaleString()}`;
+    if (totalEl) totalEl.textContent = `PKR ${parseInt(total).toLocaleString()}`;
   },
 
   showToast(message) {
