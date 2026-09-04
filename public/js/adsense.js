@@ -6,7 +6,7 @@
 
 const AdSenseManager = {
   settings: {
-    clientId: 'ca-pub-9840293847291049',
+    clientId: 'ca-pub-2869053680730387',
     enabled: true
   },
 
@@ -33,6 +33,11 @@ const AdSenseManager = {
   renderAds() {
     // Check if live AdSense is configured (real pub ID without 'xxx')
     const isLive = this.settings.clientId && !this.settings.clientId.includes('xxx');
+
+    // Check if AdSense script is already in the document head
+    if (document.querySelector('script[src*="adsbygoogle.js"]')) {
+      window.adsenseScriptLoaded = true;
+    }
 
     if (isLive && !window.adsenseScriptLoaded) {
       const script = document.createElement('script');

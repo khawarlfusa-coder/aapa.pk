@@ -198,7 +198,7 @@ function getSettings() {
     const defaultSettings = {
       siteName: 'Aapa.PK & Wellness',
       tagline: 'Evidence-based health insights & curated natural remedies',
-      adsenseClientId: 'ca-pub-xxxxxxxxxxxxxxxx', // User can change this in admin panel
+      adsenseClientId: 'ca-pub-2869053680730387',
       adsenseEnabled: true,
       contactEmail: 'contact@aapa.pk',
       contactPhone: '0336-8323063',
