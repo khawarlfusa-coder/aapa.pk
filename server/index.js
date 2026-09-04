@@ -61,6 +61,12 @@ app.get('/wp-admin', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'admin.html'));
 });
 
+// Serve ads.txt for Google AdSense compliance
+app.get('/ads.txt', (req, res) => {
+  res.type('text/plain');
+  res.sendFile(path.join(__dirname, '..', 'public', 'ads.txt'));
+});
+
 app.listen(PORT, () => {
   console.log(`=====================================================`);
   console.log(`🌿 Aapa.PK (Healthline-style Blog + COD Store) is running!`);
