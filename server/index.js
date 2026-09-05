@@ -73,6 +73,18 @@ app.get('/google8a653a38d28088ef.html', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'google8a653a38d28088ef.html'));
 });
 
+// Serve sitemap.xml for Google SEO Indexing
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+  res.sendFile(path.join(__dirname, '..', 'public', 'sitemap.xml'));
+});
+
+// Serve robots.txt for Search Engine Crawlers
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.sendFile(path.join(__dirname, '..', 'public', 'robots.txt'));
+});
+
 app.listen(PORT, () => {
   console.log(`=====================================================`);
   console.log(`🌿 Aapa.PK (Healthline-style Blog + COD Store) is running!`);
