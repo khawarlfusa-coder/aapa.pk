@@ -83,19 +83,16 @@ const App = {
         </div>
         <div class="featured-content">
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <div class="medical-review-badge">
-              <i class="fa-solid fa-stethoscope"></i> Medically Reviewed by ${featured.reviewer ? featured.reviewer.name : 'Board of Physicians'}
-            </div>
             <div class="evidence-badge">
-              <i class="fa-solid fa-circle-check"></i> ${featured.evidenceLevel || 'Evidence Based'}
+              <i class="fa-solid fa-circle-check"></i> ${featured.evidenceLevel || 'Aapa.PK Editorial'}
             </div>
           </div>
           <h2 class="story-title">${featured.title}</h2>
           <p class="story-excerpt">${featured.summary}</p>
           <div class="author-meta">
             <div class="author-text">
-              <p style="color: #059669; font-weight: 600; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Fact Checked &bull; Evidence-Based</p>
-              <p style="font-size: 0.8rem; color: #64748b;"><i class="fa-regular fa-clock"></i> ${featured.readTime} &bull; Updated ${featured.reviewer ? featured.reviewer.date : 'Recently'}</p>
+              <p style="color: #059669; font-weight: 600; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Sources cited</p>
+              <p style="font-size: 0.8rem; color: #64748b;"><i class="fa-regular fa-clock"></i> ${featured.readTime} &bull; By Aapa.PK Editorial Team</p>
             </div>
           </div>
         </div>
@@ -371,11 +368,6 @@ const App = {
             "name": post.author ? post.author.name : "Aapa.PK Team",
             "jobTitle": post.author ? post.author.role : "Health Writer"
           },
-          "reviewedBy": {
-            "@type": "Person",
-            "name": post.reviewer ? post.reviewer.name : "Medical Review Board",
-            "jobTitle": post.reviewer ? post.reviewer.credentials : "Physician Reviewer"
-          },
           "publisher": {
             "@type": "Organization",
             "name": "Aapa.PK Media",
@@ -396,7 +388,7 @@ const App = {
       document.getElementById('articleCategory').textContent = post.category;
       document.getElementById('articleCategory').href = `/index.html?category=${encodeURIComponent(post.category)}`;
       document.getElementById('articleHeadline').textContent = post.title;
-      document.getElementById('articleReviewerName').textContent = post.reviewer ? post.reviewer.name : 'Dr. Ayesha Siddiqa, MBBS';
+      document.getElementById('articleReviewerName').textContent = 'Aapa.PK Editorial Team';
       const authorEl = document.getElementById('articleAuthorName');
       if (authorEl) authorEl.textContent = post.author ? post.author.name : 'Aapa.PK Team';
       document.getElementById('articleReadTime').textContent = post.readTime;
@@ -468,7 +460,7 @@ const App = {
                 <span class="cod-pill" style="margin-left: 6px;">COD Available</span>
               </div>
             </div>
-            <p style="font-size: 0.82rem; color: #475569; margin-bottom: 12px;">Doctor-reviewed pure extracts with third-party purity testing.</p>
+            <p style="font-size: 0.82rem; color: #475569; margin-bottom: 12px;">Wellness product from the Aapa.PK store. Cash on Delivery available.</p>
             <button type="button" class="btn-add-cart" style="background: #0f766e;" onclick='CartManager.addItem(${JSON.stringify(relatedProd).replace(/'/g, "&apos;")})'>
               <i class="fa-solid fa-cart-plus"></i> Add to Cart (COD)
             </button>

@@ -31,6 +31,9 @@ app.get('/article/:slug', (req, res) => {
   res.send(html);
 });
 
+app.get('/about', (req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'about.html')));
+app.get('/contact', (req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'contact.html')));
+
 app.get('/shop', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'shop.html'));
 });

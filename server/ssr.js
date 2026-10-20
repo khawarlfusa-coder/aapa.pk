@@ -45,7 +45,7 @@ function renderArticle(slug) {
 
 function sitemap() {
   const u = (loc, p) => `<url><loc>${SITE}${loc}</loc><priority>${p}</priority></url>`;
-  const pages = ['/', '/shop', '/privacy-policy', '/terms'].map((l, i) => u(l, i ? 0.5 : 1.0));
+  const pages = ['/', '/shop', '/about.html', '/contact.html', '/privacy-policy', '/terms'].map((l, i) => u(l, i ? 0.5 : 1.0));
   const posts = db.getPosts().map(p => u(`/article/${encodeURIComponent(p.slug)}`, 0.8));
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.concat(posts).join('')}</urlset>`;
 }

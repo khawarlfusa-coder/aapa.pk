@@ -118,7 +118,7 @@ const CartManager = {
         <div class="cart-empty-state">
           <i class="fa-solid fa-cart-shopping"></i>
           <p><strong>Your cart is currently empty</strong></p>
-          <p style="font-size: 0.85rem; margin-top: 6px;">Browse our evidence-based supplements and natural wellness essentials.</p>
+          <p style="font-size: 0.85rem; margin-top: 6px;">Browse our wellness products and natural essentials.</p>
           <a href="/shop.html" class="btn-checkout-proceed" style="margin-top: 18px; text-decoration: none; display: inline-block;">Shop Wellness</a>
         </div>
       `;
