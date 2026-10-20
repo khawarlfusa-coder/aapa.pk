@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const db = require('./db');
+const { box } = require('./affiliate');
 
 const SITE = 'https://aapa.pk';
 const tpl = () => fs.readFileSync(path.join(__dirname, '..', 'public', 'article.html'), 'utf8');
@@ -39,7 +40,7 @@ function renderArticle(slug) {
     .replace(/<!-- Healthline Medical Review Trust Banner -->[\s\S]*?(?=\s*<\/div>\s*<!-- Article Hero)/, byline)
     .replace(/(id="articleCoverImage")( alt="[^"]*")?/, `$1 alt="${esc(post.title)}"`)
     .replace(/(<img src=")("\s+id="articleCoverImage")/, `$1${esc(post.coverImage)}$2`)
-    .replace(/(id="articleBody">)[\s\S]*?(<\/main>)/, `$1${body}$2`)
+    .replace(/(id="articleBody">)[\s\S]*?(<\/main>)/, `$1${body}${box(post.slug)}$2`)
     .replace(/(id="tocList">)[\s\S]*?(<\/ul>)/, `$1${toc}$2`);
 }
 

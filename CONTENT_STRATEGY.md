@@ -23,3 +23,10 @@ Monday: check Search Console (indexed pages, queries). Rewrite 5 old thin posts 
 
 ## Publishing
 `node scripts/publish.js content/batchN.js` -> commit -> push main -> Vercel deploys.
+
+## Niche focus (owner request, Oct 2026)
+Mix daily: gharelu totkay/remedies (only with honest evidence level: "limited evidence" when so), weight loss, women's health (periods, PCOS, iron, pregnancy nutrition basics, menopause), everyday health, Healthline-style explainers.
+Backlog adds: PCOS basics, period cramps (what helps, what doesn't), pregnancy nutrition basics, menopause symptoms, ajwain/saunf/adrak remedies (what evidence exists), honey-lemon water myth check, apple cider vinegar claims, hair fall causes, constipation & fibre.
+
+## Amazon affiliate
+Tag 9252888-20 (Associates account of the owner, tax info still pending as of 2026-10-20). Links are added automatically at the end of each article by server/affiliate.js (RULES by slug keyword; add a rule when a new topic needs different products). Only tools/gadgets, never supplements or "cure" products. Disclosure text must stay in the box and on About.
