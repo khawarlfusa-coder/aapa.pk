@@ -17,7 +17,7 @@ const App = {
       await this.loadHomepage();
     } else if (path.includes('shop.html')) {
       await this.loadShopPage();
-    } else if (path.includes('article.html')) {
+    } else if (path.startsWith('/article/')) {
       await this.loadArticlePage();
     } else if (path.includes('checkout.html')) {
       this.setupCheckoutPage();
@@ -76,7 +76,7 @@ const App = {
 
     const featured = posts[0];
     heroFeatured.innerHTML = `
-      <a href="/article.html?slug=${featured.slug}" class="featured-story-card">
+      <a href="/article/${featured.slug}" class="featured-story-card">
         <div class="featured-img-wrap">
           <img src="${featured.coverImage}" alt="${featured.title}">
           <span class="badge-category">${featured.category}</span>
@@ -107,7 +107,7 @@ const App = {
       let html = '';
       top3.forEach(p => {
         html += `
-          <a href="/article.html?slug=${p.slug}" class="mini-story-card">
+          <a href="/article/${p.slug}" class="mini-story-card">
             <img src="${p.coverImage}" alt="${p.title}" class="mini-story-thumb">
             <div class="mini-story-info">
               <span class="mini-story-category">${p.category}</span>
@@ -152,7 +152,7 @@ const App = {
     visiblePosts.forEach(p => {
       html += `
         <article class="article-card">
-          <a href="/article.html?slug=${p.slug}">
+          <a href="/article/${p.slug}">
             <img src="${p.coverImage}" alt="${p.title}" class="article-card-img" loading="lazy">
           </a>
           <div class="article-card-body">
@@ -161,7 +161,7 @@ const App = {
               <span style="font-size: 0.75rem; color: #94a3b8;"><i class="fa-regular fa-clock"></i> ${p.readTime}</span>
             </div>
             <h3 class="article-card-title">
-              <a href="/article.html?slug=${p.slug}">${p.title}</a>
+              <a href="/article/${p.slug}">${p.title}</a>
             </h3>
             <p class="article-card-desc">${p.summary && p.summary.length > 110 ? p.summary.substring(0, 110) + '...' : (p.summary || '')}</p>
             <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid #f1f5f9;">
@@ -311,7 +311,7 @@ const App = {
   // -------------------------------------------------------------
   async loadArticlePage() {
     const urlParams = new URLSearchParams(window.location.search);
-    const slug = urlParams.get('slug') || 'proven-health-benefits-of-ashwagandha';
+    const slug = decodeURIComponent(location.pathname.split('/')[2] || '') || urlParams.get('slug');
 
     try {
       const [resPost, resProducts] = await Promise.all([
@@ -333,6 +333,8 @@ const App = {
       const post = await resPost.json();
       const products = await resProducts.json();
 
+      const ssr = document.body.dataset.ssr === "1";
+      if (!ssr) {
       document.title = `${post.title} | Aapa.PK`;
 
       // Update SEO Metadata
@@ -450,6 +452,7 @@ const App = {
         }
       }
 
+      } // end !ssr
       // Render Related Product Promo
       const relatedPromo = document.getElementById('relatedProductPromo');
       if (relatedPromo) {

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const apiRoutes = require('./routes/api');
+const { renderArticle, sitemap } = require('./ssr');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,6 +10,10 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// SEO: server-rendered articles, old ?slug= URLs 301 to clean ones (must precede static)
+app.get('/article.html', (req, res) => req.query.slug ? res.redirect(301, '/article/' + encodeURIComponent(req.query.slug)) : res.redirect(301, '/'));
+app.get('/sitemap.xml', (req, res) => res.type('application/xml').send(sitemap()));
 
 // Serve static assets from public
 app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -18,7 +23,9 @@ app.use('/api', apiRoutes);
 
 // Fallback routing for html pages
 app.get('/article/:slug', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'article.html'));
+  const html = renderArticle(req.params.slug);
+  if (!html) return res.status(404).sendFile(path.join(__dirname, '..', 'public', 'article.html'));
+  res.send(html);
 });
 
 app.get('/shop', (req, res) => {
@@ -71,12 +78,6 @@ app.get('/ads.txt', (req, res) => {
 app.get('/google8a653a38d28088ef.html', (req, res) => {
   res.type('text/html');
   res.sendFile(path.join(__dirname, '..', 'public', 'google8a653a38d28088ef.html'));
-});
-
-// Serve sitemap.xml for Google SEO Indexing
-app.get('/sitemap.xml', (req, res) => {
-  res.type('application/xml');
-  res.sendFile(path.join(__dirname, '..', 'public', 'sitemap.xml'));
 });
 
 // Serve robots.txt for Search Engine Crawlers
