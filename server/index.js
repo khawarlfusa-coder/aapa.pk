@@ -7,6 +7,9 @@ const { renderArticle, sitemap } = require('./ssr');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// SEO: one canonical host (www -> apex)
+app.use((req, res, next) => req.hostname === 'www.aapa.pk' ? res.redirect(301, 'https://aapa.pk' + req.originalUrl) : next());
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
