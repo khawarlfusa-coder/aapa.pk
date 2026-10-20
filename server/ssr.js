@@ -5,6 +5,7 @@ const db = require('./db');
 const { box } = require('./affiliate');
 
 const SITE = 'https://aapa.pk';
+const ogImage = post => fs.existsSync(path.join(__dirname, '..', 'public', 'og', post.slug + '.png')) ? `${SITE}/og/${encodeURIComponent(post.slug)}.png` : post.coverImage;
 const tpl = () => fs.readFileSync(path.join(__dirname, '..', 'public', 'article.html'), 'utf8');
 const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -16,7 +17,7 @@ function renderArticle(slug) {
   const toc = (post.tableOfContents || []).map(t => `<li><a href="#${esc(t.id)}">&bull; ${esc(t.title)}</a></li>`).join('');
   const ld = {
     '@context': 'https://schema.org', '@type': 'Article', headline: post.title, description: desc,
-    image: post.coverImage, mainEntityOfPage: url, datePublished: post.createdAt,
+    image: ogImage(post), mainEntityOfPage: url, datePublished: post.createdAt,
     dateModified: post.updatedAt || post.createdAt,
     author: { '@type': 'Organization', name: 'Aapa.PK Editorial Team' },
     publisher: { '@type': 'Organization', name: 'Aapa.PK' }
@@ -32,7 +33,7 @@ function renderArticle(slug) {
     .replace(/(id="canonicalLink" href=")[^"]*/, `$1${url}`)
     .replace(/(id="ogTitle" content=")[^"]*/, `$1${esc(post.title)}`)
     .replace(/(id="ogDescription" content=")[^"]*/, `$1${esc(desc)}`)
-    .replace(/(id="ogImage" content=")[^"]*/, `$1${esc(post.coverImage)}`)
+    .replace(/(id="ogImage" content=")[^"]*/, `$1${esc(ogImage(post))}`)
     .replace(/(<script type="application\/ld\+json" id="articleJsonLd">)[\s\S]*?(<\/script>)/, `$1${JSON.stringify(ld)}$2`)
     .replace(/<body>/, '<body data-ssr="1">')
     .replace(/(id="articleCategory">)[^<]*/, `$1${esc(post.category)}`)

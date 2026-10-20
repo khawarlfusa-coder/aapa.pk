@@ -44,3 +44,4 @@ batch.forEach((a, i) => {
 });
 fs.writeFileSync(dbFile, JSON.stringify(posts, null, 2));
 console.log(`added ${added} of ${batch.length}`);
+require('child_process').execFileSync(process.execPath, [path.join(__dirname, 'make_og.js')], { stdio: 'inherit' });
