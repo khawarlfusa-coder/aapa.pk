@@ -10,6 +10,8 @@ const RULES = [
   [/wazan|weight/, ['Digital kitchen scale', 'Body weight bathroom scale', 'Portion control plates']],
   [/vitamin-d/, ['SPF 50 sunscreen', 'Wide brim sun hat']],
   [/khoon|anemia|iron/, ['Manual citrus juicer', 'Weekly pill organizer']],
+  [/diabetes/, ['Digital kitchen scale', 'Portion control plates', 'Step counter pedometer']],
+  [/periods|cramps/, ['Electric heating pad', 'Hot water bottle with cover']],
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
