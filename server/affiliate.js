@@ -12,6 +12,8 @@ const RULES = [
   [/khoon|anemia|iron/, ['Manual citrus juicer', 'Weekly pill organizer']],
   [/diabetes/, ['Digital kitchen scale', 'Portion control plates', 'Step counter pedometer']],
   [/periods|cramps/, ['Electric heating pad', 'Hot water bottle with cover']],
+  [/baal-jharne|hair/, ['Wide tooth comb', 'Silk pillowcase', 'Soft hair ties without metal']],
+  [/qabz|fibre/, ['Toilet step stool', 'Food diary notebook', 'Meal prep containers']],
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
