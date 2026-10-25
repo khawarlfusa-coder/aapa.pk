@@ -17,6 +17,8 @@ const RULES = [
   [/cholesterol/, ['Digital kitchen scale', 'Oil spray bottle for cooking', 'Step counter pedometer']],
   [/shehad-limoo|limoo/, ['Manual citrus juicer', 'Insulated water bottle 1 liter', 'Reusable drinking straws']],
   [/dandruff|roosi/, ['Wide tooth comb', 'Silk pillowcase', 'Extra cotton towel set']],
+  [/sunscreen|dhabbe/, ['SPF 50 sunscreen', 'Wide brim sun hat', 'Compact umbrella']],
+  [/kamar-dard/, ['Electric heating pad', 'Hot water bottle with cover', 'Step counter pedometer']],
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
