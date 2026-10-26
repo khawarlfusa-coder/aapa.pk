@@ -19,6 +19,8 @@ const RULES = [
   [/dandruff|roosi/, ['Wide tooth comb', 'Silk pillowcase', 'Extra cotton towel set']],
   [/sunscreen|dhabbe/, ['SPF 50 sunscreen', 'Wide brim sun hat', 'Compact umbrella']],
   [/kamar-dard/, ['Electric heating pad', 'Hot water bottle with cover', 'Step counter pedometer']],
+  [/migraine/, ['Sleep eye mask', 'Insulated water bottle 1 liter', 'Food diary notebook']],
+  [/bachon|stunting/, ['Baby food masher', 'Toddler divided feeding plates', 'Food diary notebook']],
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
