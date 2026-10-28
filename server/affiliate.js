@@ -21,6 +21,8 @@ const RULES = [
   [/kamar-dard/, ['Electric heating pad', 'Hot water bottle with cover', 'Step counter pedometer']],
   [/migraine/, ['Sleep eye mask', 'Insulated water bottle 1 liter', 'Food diary notebook']],
   [/bachon|stunting/, ['Baby food masher', 'Toddler divided feeding plates', 'Food diary notebook']],
+  [/adrak|ginger/, ['Electric kettle with infuser', 'Insulated water bottle 1 liter', 'Food diary notebook']],
+  [/hamal|pregnan/, ['Weekly pill organizer', 'Meal prep containers', 'Insulated water bottle 1 liter']],
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
