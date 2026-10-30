@@ -23,6 +23,8 @@ const RULES = [
   [/bachon|stunting/, ['Baby food masher', 'Toddler divided feeding plates', 'Food diary notebook']],
   [/adrak|ginger/, ['Electric kettle with infuser', 'Insulated water bottle 1 liter', 'Food diary notebook']],
   [/hamal|pregnan/, ['Weekly pill organizer', 'Meal prep containers', 'Insulated water bottle 1 liter']],
+  [/menopause/, ['Handheld portable fan', 'Cotton bed sheet set', 'Food diary notebook']],
+  [/haldi|turmeric/, ['Airtight spice containers', 'Electric spice grinder', 'Food diary notebook']],
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
