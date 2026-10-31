@@ -25,6 +25,7 @@ const RULES = [
   [/hamal|pregnan/, ['Weekly pill organizer', 'Meal prep containers', 'Insulated water bottle 1 liter']],
   [/menopause/, ['Handheld portable fan', 'Cotton bed sheet set', 'Food diary notebook']],
   [/haldi|turmeric/, ['Airtight spice containers', 'Electric spice grinder', 'Food diary notebook']],
+  [/zukam|flu/, ['Digital forehead thermometer', 'Cool mist humidifier', 'Insulated water bottle 1 liter']],
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
