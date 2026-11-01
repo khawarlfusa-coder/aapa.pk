@@ -26,6 +26,8 @@ const RULES = [
   [/menopause/, ['Handheld portable fan', 'Cotton bed sheet set', 'Food diary notebook']],
   [/haldi|turmeric/, ['Airtight spice containers', 'Electric spice grinder', 'Food diary notebook']],
   [/zukam|flu/, ['Digital forehead thermometer', 'Cool mist humidifier', 'Insulated water bottle 1 liter']],
+  [/dil-ka-daura|heart/, ['Upper arm blood pressure monitor', 'Digital kitchen scale', 'Step counter pedometer']],
+  [/chai|cheeni/, ['Digital kitchen scale', 'Insulated water bottle 1 liter', 'Food diary notebook']],
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
