@@ -4,6 +4,8 @@ const TAG = process.env.AMAZON_TAG || '9252888-20';
 const link = q => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=${TAG}`;
 
 const RULES = [
+  [/smog/, ['Portable HEPA air purifier', 'Indoor air quality monitor', 'Window draft sealing strips']],
+  [/anda/, ['Electric egg boiler', 'Non-stick frying pan', 'Oil spray bottle for cooking']],
   [/blood-pressure|namak/, ['Upper arm blood pressure monitor', 'Digital kitchen scale', 'Salt-free herb and spice blend']],
   [/neend|sleep/, ['Sleep eye mask', 'White noise machine', 'Analog alarm clock without phone']],
   [/pani|water/, ['Insulated water bottle 1 liter', 'Fruit infuser water bottle']],
