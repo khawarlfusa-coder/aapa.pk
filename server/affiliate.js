@@ -4,6 +4,8 @@ const TAG = process.env.AMAZON_TAG || '9252888-20';
 const link = q => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=${TAG}`;
 
 const RULES = [
+  [/fatty-liver/, ['Digital kitchen scale', 'Step counter pedometer', 'Portion control plates']],
+  [/lehsan/, ['Garlic press', 'Airtight spice containers', 'Electric spice grinder']],
   [/smog/, ['Portable HEPA air purifier', 'Indoor air quality monitor', 'Window draft sealing strips']],
   [/anda/, ['Electric egg boiler', 'Non-stick frying pan', 'Oil spray bottle for cooking']],
   [/blood-pressure|namak/, ['Upper arm blood pressure monitor', 'Digital kitchen scale', 'Salt-free herb and spice blend']],
