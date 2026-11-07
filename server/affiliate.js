@@ -35,7 +35,8 @@ const RULES = [
   [/acidity|gas/, ['Food diary notebook', 'Meal prep containers']],
   [/ajwain|saunf/, ['Airtight spice containers', 'Electric spice grinder', 'Food diary notebook']],
   [/khushk-jild/, ['Cool mist humidifier', 'Compact umbrella', 'Soft cotton gloves']],
-  [/aankhon|screen/, ['Adjustable laptop stand', 'Desk lamp with adjustable brightness', 'Analog kitchen timer']]
+  [/aankhon|screen/, ['Adjustable laptop stand', 'Desk lamp with adjustable brightness', 'Analog kitchen timer']],
+  [/acne|muhasay/, ['Soft cotton face towel set', 'Silk pillowcase', 'Non-comedogenic SPF 30 sunscreen']]
 ];
 const DEFAULT = ['Digital kitchen scale', 'Insulated water bottle 1 liter'];
 
